@@ -1,6 +1,6 @@
  /* TAD: No (chave, conteudo, esq, dir) */
 typedef struct node No;
-int o;
+
 /* Aloca e retorna um No com os dados passados por parâmetro. Retorna no nó
  * criado ou NULL caso não seja posivel criar o nó. */
 No *abb_cria_no(int chave, char conteudo);

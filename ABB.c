@@ -275,7 +275,7 @@ char *abb_ordem(No *no) {
   abb_ordem(no->esq);
   
 strcpy(global3,(&(no->conteudo)));
-strcat(global4,global1);
+strcat(global4,global3);
   abb_ordem(no->dir);
   
   }  
@@ -293,7 +293,7 @@ char *abb_pos_ordem(No *no) {
   abb_pos_ordem(no->esq);
 abb_pos_ordem(no->dir);
 strcpy(global5,(&(no->conteudo)));
-strcat(global6,global1);
+strcat(global6,global5);
   
   
   }  
