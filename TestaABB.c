@@ -260,16 +260,17 @@ void testa_ordem_validos(){
   raiz = abb_insere_no(raiz, no3);
   raiz = abb_insere_no(raiz, no4);
   raiz = abb_insere_no(raiz, no5);
-  if(strcmp(abb_pre_ordem(raiz),"ksiED")==0){
+  if(strcmp(abb_ordem(raiz),"ksiED")==0){
     printf("[passou]abb_ordem-validos\n");
   }else{
+    
     printf("[falhou]abb_ordem-validos\n");
   }
 }
 
 void testa_ordem_nulos(){
   No* raiz=NULL;
-  if(strcmp(abb_pre_ordem(raiz),"#")==0){
+  if(strcmp(abb_ordem(raiz),"#")==0){
     printf("[passou]abb_ordem-nulos\n");
   }else{
     printf("[falhou]abb_ordem-nulos\n");
@@ -288,8 +289,9 @@ void testa_pos_ordem_validos(){
   raiz = abb_insere_no(raiz, no3);
   raiz = abb_insere_no(raiz, no4);
   raiz = abb_insere_no(raiz, no5);
-  if(strcmp(abb_pre_ordem(raiz),"kisDE")==0){
+  if(strcmp(abb_pos_ordem(raiz),"kisDE")){
     printf("[passou]abb_pos_ordem-validos\n");
+   
   }else{
     printf("[falhou]abb_pos_ordem-validos\n");
   }
@@ -297,7 +299,7 @@ void testa_pos_ordem_validos(){
 
 void testa_pos_ordem_nulos(){
   No* raiz=NULL;
-  if(strcmp(abb_pre_ordem(raiz),"#")==0){
+  if(strcmp(abb_pos_ordem(raiz),"#")==0){
     printf("[passou]abb_pos_ordem-nulos\n");
   }else{
     printf("[falhou]abb_pos_ordem-nulos\n");
@@ -313,17 +315,17 @@ int main() {
   testa_busca_nulos();
   testa_libera_validos();
   testa_libera_nulos();
-  testa_remove_validos();
-  testa_remove_nulos();
+  //testa_remove_validos();
+  //testa_remove_nulos();
   testa_altura_validos();
   testa_altura_nulos();
   testa_numero_validos();
   testa_numero_nulos();
- // testa_pre_ordem_validos();
-//  testa_pre_ordem_nulos();
-  //testa_ordem_validos();
- // testa_ordem_nulos();
-  //testa_pos_ordem_validos();
- // testa_pos_ordem_nulos();
+  testa_pre_ordem_validos();
+  testa_pre_ordem_nulos();
+  testa_ordem_validos();
+  testa_ordem_nulos();
+  testa_pos_ordem_validos();
+  testa_pos_ordem_nulos();
   return 0;
 }

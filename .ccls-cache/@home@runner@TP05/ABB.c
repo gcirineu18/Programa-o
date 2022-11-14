@@ -3,6 +3,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+char  global1[30] , global2[30], global3[30] , global4[30], global5[30] , global6[30] ;
 
 struct node {
   int chave;
@@ -43,11 +44,11 @@ No* Achar_pai(No *no, No *raiz){
   return no->pai;
 } 
 
-  No* Sucessor(No* no, No* raiz){
+  No* Sucessor(No* no){
   if(no->dir != NULL){
     return Minimo(no->dir);
   }
-  No* y = Achar_pai(no, raiz);
+  No* y = no->pai;
     while(y != NULL && no == y->dir){
       no = y;
       y = no->pai;
@@ -182,7 +183,7 @@ No *abb_remove_no(No *raiz, int chave) {
     
   }
   else{
-    No* y = Sucessor(no,raiz);
+    No* y = Sucessor(no);
     Transplantar(y, y->dir, raiz);
     y->esq= no->esq;
     no->pai->esq = y;
@@ -214,8 +215,7 @@ int abb_altura(No *raiz) {
       }
 
       }
-    
-  
+
 }
 
   
@@ -240,23 +240,27 @@ if(raiz == NULL) return -1;
 
 }
 
+
+
 /*Retorna a concatenação do conteúdo da árvore fazendo percurso em pré-ordem à
  * partir do nó ou '#' caso o nó seja NULL. */
 char *abb_pre_ordem(No *no) {
-  if(no==NULL){
-    return "#";
+  if (no == NULL) {
+      return "#";
   }
-  char aux;
-  No* ant;
 
-  if(no!=NULL ){
-  abb_conteudo_no(no);
-  abb_pre_ordem(no->esq);
-  abb_pre_ordem(no->dir);
-    } 
-  
-  
-}
+
+  if(no!=NULL){
+strcpy(global1,(&(no->conteudo)));
+strcat(global2,global1);
+abb_pre_ordem(no->esq);
+abb_pre_ordem(no->dir);
+    
+    
+}   
+    return global2;
+ 
+  }
 
 /*Retorna a concatenação do conteúdo da árvore fazendo percurso em ordem à
  * partir do nó ou '#' caso o nó seja NULL. */
@@ -264,89 +268,36 @@ char *abb_ordem(No *no) {
  if(no==NULL){
     return "#";
   }
-  char *aux, *aux2,*aux3;
-  No* ant= NULL;
-  
-  if(no!=NULL){
-  //abb_ordem(no->esq);
- if(ant!=NULL)  
- aux= strcat((&(ant->conteudo)),(&(no->conteudo)));
+
+
+  if(no!=NULL){ 
     
- // abb_ordem(no->dir);
- 
-    ant = no;
+  abb_ordem(no->esq);
+  
+strcpy(global3,(&(no->conteudo)));
+strcat(global4,global1);
+  abb_ordem(no->dir);
+  
   }  
 
-  return aux;
+  return global4;
 }
 /*Retorna a concatenação do conteúdo da árvore fazendo percurso em pós-ordem à
  * partir do nó ou '#' caso o nó seja NULL. */
 char *abb_pos_ordem(No *no) {
    if(no==NULL){
-    return "#";}
+    return "#";
   }
-  /*
-char aux;
-No* ant;  
- if (Achar_raiz(no)!=NULL){
-   ant = NULL;
-   aux = no->conteudo;
- } 
-  No* aux;
-  if(no!=NULL && ){
-  aux = no;
+ if(no!=NULL){
+  
   abb_pos_ordem(no->esq);
-  abb_pos_ordem(no->dir);
-  abb_conteudo_no(no);
-   if(ant!=NULL){
-    aux = strcat((&(ant->conteudo)),(&(no->conteudo))) ; 
-  }
-    
-  return aux;
+abb_pos_ordem(no->dir);
+strcpy(global5,(&(no->conteudo)));
+strcat(global6,global1);
+  
+  
+  }  
+return global6;
 }
 
-
-int main(void){
- int chave1 = 2;
-  char conteudo1 = 'A';
-  No* raiz = abb_cria_no( chave1,  conteudo1);
-
-  int chave2 = 3;
- char conteudo2 = 'B';
- No* novo =  abb_cria_no( chave2,  conteudo2); ;
-
-    int chave3 = 4;
- char conteudo3 = 'C';
- No* novo2 =  abb_cria_no( chave3,  conteudo3); 
-  
-  No* aux;
-  
-    int chave4 = 1;
- char conteudo4 = 'D';
- No* novo3 =  abb_cria_no( chave4,  conteudo4); 
- No* novo4 = abb_cria_no(17, 'S');
-   No* novo5 = abb_cria_no(0, 'r');
-   No* novo6 = abb_cria_no(9, 'u');
-   No* novo7 = abb_cria_no(2, 'i');
-  
-  raiz = abb_insere_no(raiz, novo);
-  raiz = abb_insere_no(raiz, novo2);
- raiz = abb_insere_no(raiz, novo4);
-   raiz = abb_insere_no(raiz, novo5);
-   raiz = abb_insere_no(raiz, novo6);
- //  raiz = abb_insere_no(raiz, novo7);
-   
-  
-  
- // char* test = abb_ordem(raiz) ;
-  //printf("%s\n", test);
- int x = abb_numero(raiz);
-  //printf("%d\n",x);
-int y = abb_altura(raiz);
-  
-  char c[10] = "oi";
-  int b = strlen(c);
- printf("%d",y);
-  }
- */ 
 
